@@ -46,7 +46,7 @@ with mp_face.FaceDetection(model_selection=0, min_detection_confidence=0.5) as f
                 bw = int(rb.width * w)
                 bh = int(rb.height * h)
                 side = max(bw, bh)
-                cv2.rectangle(frame, (x, y), (x + side, y + side), (150, 50, 0), 2)
+                # cv2.rectangle(frame, (x, y), (x + side, y + side), (150, 50, 0), 2)  #Draws rectangle around face for testing
         
         now_inside = False
 
@@ -57,7 +57,7 @@ with mp_face.FaceDetection(model_selection=0, min_detection_confidence=0.5) as f
                 finger=hlms.landmark[8]
                 fx,fy=int(finger.x*w),int(finger.y*h)
                 if x is not None and y is not None:
-                    if (x<=fx<=x+side) and (y<=fy<=y+side):#Finger is in square
+                    if (x<=fx<=x+side) and (y<=fy<=y+side):
                         now_inside = True
         if now_inside and not was_inside:
             channel.play(sound)
